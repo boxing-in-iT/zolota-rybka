@@ -39,24 +39,32 @@ dots.forEach((dot) => {
 updateCarousel();
 
 // Модальное окно галереи
+// Модальное окно галереи
 const modal = document.getElementById("galleryModal");
 const closeModalBtn = document.querySelector(".close-text");
-const galleryImages = document.querySelectorAll(".gallery-image");
+const galleryContainer = document.querySelector(".gallery");
 const prevBtnGallery = document.querySelector(".prev");
 const nextBtnGallery = document.querySelector(".next");
 
 let currentGalleryIndex = 0;
+let galleryImages = [];
 
 // Функция для открытия модального окна с соответствующими изображениями
 function openModal(images) {
-  // Очищаем старые активные изображения
-  galleryImages.forEach((img, index) => {
-    img.classList.remove("active");
-    img.src = images[index]; // Устанавливаем новые изображения
+  // Очищаем контейнер галереи
+  galleryContainer.innerHTML = "";
+
+  // Создаем новые элементы изображений и добавляем в контейнер
+  images.forEach((imageSrc, index) => {
+    const imgElement = document.createElement("img");
+    imgElement.src = imageSrc;
+    imgElement.classList.add("gallery-image");
+    if (index === 0) imgElement.classList.add("active");
+    galleryContainer.appendChild(imgElement);
   });
 
-  // Показываем первое изображение
-  galleryImages[0].classList.add("active");
+  galleryImages = document.querySelectorAll(".gallery-image"); // Обновляем список изображений
+
   modal.style.display = "block";
   currentGalleryIndex = 0;
 
@@ -77,9 +85,9 @@ function showImage(index) {
   currentGalleryIndex = (index + galleryImages.length) % galleryImages.length;
   galleryImages[currentGalleryIndex].classList.add("active");
 
-  // Update the counter text
+  // Обновляем текст счетчика
   const counterText = document.querySelector(".image-counter");
-  const totalImages = galleryImages.length; // Total number of images
+  const totalImages = galleryImages.length;
   counterText.textContent = `${currentGalleryIndex + 1} из ${totalImages}`;
 }
 
@@ -87,23 +95,76 @@ function showImage(index) {
 document.querySelectorAll(".carousel-item").forEach((item, index) => {
   item.addEventListener("click", () => {
     let images = [];
+    debugger;
     switch (index) {
+      //WEDDING
       case 0:
         images = [
           "./assets/images/gallery/wedding/wedding_1.JPG",
           "./assets/images/gallery/wedding/wedding_2.JPG",
         ];
         break;
+      //PHOTOZONE
       case 1:
-        images = ["./assets/images/gallery/photozone/photozone_1.JPG"];
+        images = [
+          "./assets/images/gallery/photozone/photozone_1.JPG",
+          "./assets/images/gallery/photozone/photozone_2.JPG",
+          "./assets/images/gallery/photozone/photozone_3.JPG",
+          "./assets/images/gallery/photozone/photozone_4.JPG",
+          "./assets/images/gallery/photozone/photozone_5.JPG",
+          "./assets/images/gallery/photozone/photozone_6.JPG",
+          "./assets/images/gallery/photozone/photozone_7.JPG",
+          "./assets/images/gallery/photozone/photozone_8.JPG",
+          "./assets/images/gallery/photozone/photozone_9.JPG",
+          "./assets/images/gallery/photozone/photozone_10.JPG",
+          "./assets/images/gallery/photozone/photozone_11.JPG",
+          "./assets/images/gallery/photozone/photozone_12.JPG",
+        ];
+
         break;
+      //KIDSPHOTOZONE
       case 2:
         images = [
-          "./assets/images/carousel/kids1.png",
-          "./assets/images/carousel/kids2.png",
-          "./assets/images/carousel/kids3.png",
+          "./assets/images/gallery/kids/kids_1.jpg",
+          "./assets/images/gallery/kids/kids_2.jpg",
+          "./assets/images/gallery/kids/kids_3.jpg",
+          "./assets/images/gallery/kids/kids_4.jpg",
+          "./assets/images/gallery/kids/kids_5.jpg",
+          "./assets/images/gallery/kids/kids_6.jpg",
+          "./assets/images/gallery/kids/kids_7.jpg",
+          "./assets/images/gallery/kids/kids_8.jpg",
+          "./assets/images/gallery/kids/kids_9.jpg",
+          "./assets/images/gallery/kids/kids_10.jpg",
+          "./assets/images/gallery/kids/kids_11.jpg",
         ];
         break;
+      //NEWYEAR
+      case 3:
+        images = [
+          "./assets/images/gallery/ny/ny_1.jpeg",
+          "./assets/images/gallery/ny/ny_2.jpg",
+          "./assets/images/gallery/ny/ny_3.jpg",
+          "./assets/images/gallery/ny/ny_4.jpg",
+          "./assets/images/gallery/ny/ny_5.jpg",
+          "./assets/images/gallery/ny/ny_6.jpg",
+          "./assets/images/gallery/ny/ny_7.jpg",
+        ];
+        break;
+      case 4:
+        images = [
+          "./assets/images/gallery/serve/serve_1.JPG",
+          "./assets/images/gallery/serve/serve_2.JPG",
+          "./assets/images/gallery/serve/serve_3.JPG",
+          "./assets/images/gallery/serve/serve_4.JPG",
+          "./assets/images/gallery/serve/serve_5.JPG",
+          "./assets/images/gallery/serve/serve_6.JPG",
+          "./assets/images/gallery/serve/serve_7.JPG",
+          "./assets/images/gallery/serve/serve_8.JPG",
+          "./assets/images/gallery/serve/serve_9.JPG",
+          "./assets/images/gallery/serve/serve_10.JPG",
+          "./assets/images/gallery/serve/serve_11.JPG",
+          "./assets/images/gallery/serve/serve_12.JPG",
+        ];
       // Добавь другие кейсы по необходимости
     }
     // Открываем модальное окно с соответствующими изображениями
@@ -111,7 +172,7 @@ document.querySelectorAll(".carousel-item").forEach((item, index) => {
   });
 });
 
-// Закрытие модального окна по клику на крестик
+// Закрытие модального окна по клику на текст "Закрыть"
 closeModalBtn.addEventListener("click", closeModal);
 
 // Клик по кнопке "Назад" в галерее
@@ -122,11 +183,4 @@ prevBtnGallery.addEventListener("click", () => {
 // Клик по кнопке "Вперед" в галерее
 nextBtnGallery.addEventListener("click", () => {
   showImage(currentGalleryIndex + 1);
-});
-
-// Закрытие модального окна по клику вне содержимого
-window.addEventListener("click", (event) => {
-  if (event.target === modal) {
-    closeModal();
-  }
 });
