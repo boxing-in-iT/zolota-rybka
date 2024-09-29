@@ -13,7 +13,9 @@
         <div class="header_logo">
           <img src="./assets/images/header-logo.svg" alt="logo" />
         </div>
-        <nav class="header_nav">
+        <button class="hamburger-menu" aria-label="Toggle menu">&#9776;</button>
+
+        <nav class="header_nav desktop">
           <ul>
             <li data-target="welcome">Home</li>
             <li data-target="carousel">Portfolio</li>
@@ -21,6 +23,17 @@
             <li data-target="contact">Contact us</li>
           </ul>
         </nav>
+        <div class="mobile">
+          <span class="close-btn">&times;</span>
+          <nav>
+            <ul>
+              <li data-target="welcome">Home</li>
+              <li data-target="carousel">Portfolio</li>
+              <li data-target="real-about">About us</li>
+              <li data-target="contact">Contact us</li>
+            </ul>
+          </nav>
+        </div>
       </header>
       <section id="welcome">
         <div class="welcome_title">
@@ -63,56 +76,61 @@
     </section>
     <section id="carousel">
       <div class="carousel-container">
-        <!-- <button class="prev-btn"></button> -->
-         <!-- <div class="prev-btn"> -->
-          <!-- <div class="arrow"></div> -->
-         <!-- </div> -->
-          <img src="./assets/images/arrow.svg" class="prev-btn"/>
-        
+        <img src="./assets/images/arrow.svg" class="prev-btn" />
+
         <div class="carousel">
           <div class="carousel-item">
             <p class="carousel-item_title">Весільні церемоніі</p>
-            <img src="./assets/images/gallery/wedding/wedding_1.JPG" alt="Wedding Ceremony">
+            <img
+              src="./assets/images/gallery/wedding/wedding_1.JPG"
+              alt="Wedding Ceremony"
+            />
             <p class="carousel-item_text">Ми виконаємо будь-яке ваше бажання</p>
           </div>
           <div class="carousel-item">
             <p class="carousel-item_title">Фотозони</p>
-            <img src="./assets/images/gallery/photozone/photozone_1.JPG" alt="Photozone">
+            <img
+              src="./assets/images/gallery/photozone/photozone_1.JPG"
+              alt="Photozone"
+            />
             <p class="carousel-item_text">З турботою про вас та ваших гостей</p>
           </div>
           <div class="carousel-item">
             <p class="carousel-item_title">Дитяче свято</p>
-            <img src="./assets/images/gallery/kids/kids_1.jpg" alt="Kids Party">
+            <img
+              src="./assets/images/gallery/kids/kids_1.jpg"
+              alt="Kids Party"
+            />
             <p class="carousel-item_text">Деталі важливі для нас</p>
           </div>
           <div class="carousel-item">
             <p class="carousel-item_title">Новорічний декор</p>
-            <img src="./assets/images/gallery/ny/ny_1.jpeg" alt="New Year Party">
+            <img
+              src="./assets/images/gallery/ny/ny_1.jpeg"
+              alt="New Year Party"
+            />
             <p class="carousel-item_text">Деталі важливі для нас</p>
           </div>
           <div class="carousel-item">
             <p class="carousel-item_title">Серверування столів</p>
-            <img src="./assets/images/gallery/serve/serve_1.JPG" alt="Serve">
+            <img src="./assets/images/gallery/serve/serve_1.JPG" alt="Serve" />
             <p class="carousel-item_text">Деталі важливі для нас</p>
           </div>
         </div>
-        
-        <!-- <button class="next-btn">→</button> -->
-        <img src="./assets/images/arrow.svg" class="next-btn"/>
 
+        <img src="./assets/images/arrow.svg" class="next-btn" />
       </div>
-    
+
       <div class="carousel-dots">
         <span class="dot" data-index="0"></span>
         <span class="dot" data-index="1"></span>
         <span class="dot" data-index="2"></span>
         <span class="dot" data-index="3"></span>
         <span class="dot" data-index="4"></span>
-
-
       </div>
     </section>
-   <section id="real-about">
+
+    <section id="real-about">
       <div class="real-about-container">
         <div class="real-about_box">
           <div class="real-about_title_container">
@@ -154,8 +172,8 @@
           <img class="real-about_img" src="./assets/images/about/about.png" alt="flowets"/>
         </div>
     </section>
-   
-     <section id="contact">
+
+    <section id="contact">
       <div class="contact-container">
         <div class="contact_box">
           <div class="contact_item">
@@ -177,9 +195,9 @@
         </div>
       </div>
     </section>
-   
+
     <footer>
-      <img src="./assets/images/footer/footer-logo.png"/>
+      <img src="./assets/images/footer/footer-logo.png" />
     </footer>
 
     <!-- Modal -->
@@ -187,28 +205,61 @@
       <!-- <span class="close" aria-label="Close">&times;</span> -->
       <div class="modal-content">
         <div class="gallery">
-          <img class="gallery-image active" src="./assets/images/carousel/wedding.png" alt="Wedding Ceremony">
-          <img class="gallery-image" src="./assets/images/carousel/kids.png" alt="Kids">
-          <img class="gallery-image" src="./assets/images/carousel/wedding.png" alt="Wedding Ceremony">
+          <img
+            class="gallery-image active"
+            src="./assets/images/carousel/wedding.png"
+            alt="Wedding Ceremony"
+          />
+          <img
+            class="gallery-image"
+            src="./assets/images/carousel/kids.png"
+            alt="Kids"
+          />
+          <img
+            class="gallery-image"
+            src="./assets/images/carousel/wedding.png"
+            alt="Wedding Ceremony"
+          />
         </div>
         <!-- <button class="prev" aria-label="Previous Image">←</button> -->
-        <svg class="prev" width="82" height="84" viewBox="0 0 32 84" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3.00001 82L29 42L3 2" stroke="white" stroke-width="5" stroke-linejoin="round" transform="rotate(180 16 42)"/>
-      </svg>
-      
+        <svg
+          class="prev"
+          width="82"
+          height="84"
+          viewBox="0 0 32 84"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3.00001 82L29 42L3 2"
+            stroke="white"
+            stroke-width="5"
+            stroke-linejoin="round"
+            transform="rotate(180 16 42)"
+          />
+        </svg>
+
         <!-- <button class="next" aria-label="Next Image">→</button> -->
-        <svg class="next" width="82" height="84" viewBox="0 0 32 84" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3.00001 82L29 42L3 2" stroke="white" stroke-width="5" stroke-linejoin="round"/>
-          </svg>
-          
+        <svg
+          class="next"
+          width="82"
+          height="84"
+          viewBox="0 0 32 84"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3.00001 82L29 42L3 2"
+            stroke="white"
+            stroke-width="5"
+            stroke-linejoin="round"
+          />
+        </svg>
+
         <p class="image-counter">1 of 3</p>
         <p class="close-text">Закрити</p>
-
       </div>
     </div>
-
-    
-
 
     <script>
       // Обработчик кликов для навигации

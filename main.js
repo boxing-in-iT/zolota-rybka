@@ -6,9 +6,83 @@ const dots = document.querySelectorAll(".dot");
 let currentIndex = 0;
 const totalItems = document.querySelectorAll(".carousel-item").length;
 
+const hamburger = document.querySelector(".hamburger-menu");
+const mobileNav = document.querySelector(".mobile");
+const closeBtn = document.querySelector(".close-btn");
+const navLinks = document.querySelectorAll("nav ul li");
+let isMobile = window.innerWidth <= 1024;
+
+// Открытие мобильного меню
+hamburger.addEventListener("click", () => {
+  mobileNav.style.display = "flex";
+  hamburger.style.display = "none";
+});
+
+// Закрытие мобильного меню
+closeBtn.addEventListener("click", () => {
+  mobileNav.style.display = "none";
+  hamburger.style.display = "block";
+});
+
+// Функция для прокрутки к секции
+function scrollToSection(event) {
+  const targetSection = event.target.getAttribute("data-target");
+  const section = document.getElementById(targetSection);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+    if (mobileNav.style.display === "flex") {
+      mobileNav.style.display = "none";
+      hamburger.style.display = "block";
+    }
+  }
+}
+
+// Прокрутка по клику на элемент меню
+navLinks.forEach((link) => {
+  link.addEventListener("click", scrollToSection);
+});
+
+let startX, currentX;
+const threshold = 50; // Минимальная длина свайпа для срабатывания
+
+// Функция для начала свайпа
+carousel.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+});
+
+// Функция для отслеживания перемещения
+carousel.addEventListener("touchmove", (e) => {
+  currentX = e.touches[0].clientX;
+});
+
+// Функция для завершения свайпа
+carousel.addEventListener("touchend", () => {
+  const diffX = startX - currentX;
+
+  // Если свайп был достаточной длины
+  if (Math.abs(diffX) > threshold) {
+    if (diffX > 0) {
+      // Свайп влево
+      currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1;
+    } else {
+      // Свайп вправо
+      currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1;
+    }
+    updateCarousel();
+  }
+});
+
 // Функция для перемещения карусели
 function updateCarousel() {
-  const offset = (-currentIndex * 100) / totalItems;
+  let offset;
+  if (isMobile) {
+    console.log("MOBILE");
+    offset = -currentIndex * 120;
+  } else {
+    console.log("DESKTOP");
+    offset = (-currentIndex * 180) / totalItems;
+  }
+  // const offset = (-currentIndex * 180) / totalItems;
   carousel.style.transform = `translateX(${offset}%)`;
 
   dots.forEach((dot) => dot.classList.remove("active"));
