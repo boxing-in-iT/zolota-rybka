@@ -99,13 +99,14 @@ addSwipeListeners();
 // Функция для перемещения карусели
 function updateCarousel() {
   let offset;
-  if (isMobile) {
-    console.log("MOBILE");
-    offset = -currentIndex * 120;
-  } else {
-    console.log("DESKTOP");
-    offset = (-currentIndex * 180) / totalItems;
-  }
+  // if (isMobile) {
+  //   console.log("MOBILE");
+  //   offset = -currentIndex * 120;
+  // } else {
+  //   console.log("DESKTOP");
+  //   offset = (-currentIndex * 180) / totalItems;
+  // }
+  offset = (-currentIndex * 180) / totalItems;
 
   // Применяем трансформацию
   carousel.style.transform = `translateX(${offset}%)`;
