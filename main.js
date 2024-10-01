@@ -47,7 +47,7 @@ navLinks.forEach((link) => {
   link.addEventListener("click", scrollToSection);
 });
 
-const threshold = 0.1; // Минимальная длина свайпа для срабатывания
+const threshold = 50; // Минимальная длина свайпа для срабатывания
 let startX = 0;
 let currentX = 0;
 
@@ -57,22 +57,23 @@ carousel.addEventListener("touchstart", (e) => {
 
 carousel.addEventListener("touchmove", (e) => {
   currentX = e.touches[0].clientX;
-  e.preventDefault(); // Предотвращает другие события
+  e.preventDefault(); // Предотвращает другие события, такие как скроллинг
 });
 
 carousel.addEventListener("touchend", () => {
   const diffX = startX - currentX;
-  console.log(diffX);
-  alert(diffX);
 
   if (Math.abs(diffX) > threshold) {
     if (diffX > 0) {
+      // Свайп влево
       currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1;
     } else {
+      // Свайп вправо
       currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1;
     }
     updateCarousel();
   }
+
   // Сбрасываем значения для следующего свайпа
   startX = 0;
   currentX = 0;
