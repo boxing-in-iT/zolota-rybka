@@ -46,6 +46,7 @@ function scrollToSection(event) {
 navLinks.forEach((link) => {
   link.addEventListener("click", scrollToSection);
 });
+
 let startX = 0;
 let endX = 0;
 let isSwiping = false;
@@ -90,6 +91,15 @@ carousel.addEventListener("touchend", () => {
     alert("Swiped right to slide: " + currentIndex);
   }
 
+  // Check and ensure currentIndex is within valid bounds
+  if (currentIndex < 0) {
+    currentIndex = 0;
+    alert("Adjusted currentIndex to: " + currentIndex);
+  } else if (currentIndex >= totalItems) {
+    currentIndex = totalItems - 1;
+    alert("Adjusted currentIndex to: " + currentIndex);
+  }
+
   updateCarousel();
 
   // Reset values for the next swipe
@@ -108,10 +118,12 @@ function updateCarousel() {
 
   // Apply transformation
   carousel.style.transform = `translateX(${offset}%)`;
+  alert("Carousel moved to offset: " + offset + "%");
 
   // Update active dot indicators
   dots.forEach((dot) => dot.classList.remove("active"));
   dots[currentIndex].classList.add("active");
+  alert("Updated active dot to: " + currentIndex);
 }
 
 // Click "Back" button
