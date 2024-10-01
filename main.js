@@ -53,11 +53,8 @@ navLinks.forEach((link) => {
 // const nextBtn = document.querySelector('.next-btn');
 // const dots = document.querySelectorAll('.dot');
 
-// let currentIndex = 0;
-// const totalItems = dots.length;
 let startX, endX;
 
-// Функция обновления карусели
 function updateCarousel() {
   let offset;
   if (isMobile) {
@@ -73,17 +70,23 @@ function updateCarousel() {
   dots[currentIndex].classList.add("active");
 }
 
-// Клик по кнопке "Назад"
-prevBtn.addEventListener("click", () => {
+// Функция для переключения влево
+function goToPrevious() {
   currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1;
   updateCarousel();
-});
+}
 
-// Клик по кнопке "Вперед"
-nextBtn.addEventListener("click", () => {
+// Функция для переключения вправо
+function goToNext() {
   currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1;
   updateCarousel();
-});
+}
+
+// Клик по кнопке "Назад"
+prevBtn.addEventListener("click", goToPrevious);
+
+// Клик по кнопке "Вперед"
+nextBtn.addEventListener("click", goToNext);
 
 // Клик по точкам
 dots.forEach((dot) => {
@@ -104,14 +107,13 @@ carousel.addEventListener("touchend", (event) => {
 });
 
 function handleSwipe() {
-  if (startX > endX + 50) {
+  const swipeThreshold = 50; // Порог для определения свайпа
+  if (startX > endX + swipeThreshold) {
     // Свайп влево
-    currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1;
-    updateCarousel();
-  } else if (startX < endX - 50) {
+    goToNext();
+  } else if (startX < endX - swipeThreshold) {
     // Свайп вправо
-    currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1;
-    updateCarousel();
+    goToPrevious();
   }
 }
 
