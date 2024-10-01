@@ -50,17 +50,26 @@ navLinks.forEach((link) => {
 const threshold = 50; // Минимальная длина свайпа для срабатывания
 let startX = 0;
 let currentX = 0;
+let isSwiping = false;
 
 carousel.addEventListener("touchstart", (e) => {
   startX = e.touches[0].clientX;
+  isSwiping = true;
 });
 
 carousel.addEventListener("touchmove", (e) => {
+  if (!isSwiping) return;
+
   currentX = e.touches[0].clientX;
-  e.preventDefault(); // Предотвращает другие события, такие как скроллинг
+  // Сбрасываем дефолтное поведение только при значительном смещении
+  if (Math.abs(startX - currentX) > threshold) {
+    e.preventDefault(); // Предотвращает другие события, такие как скроллинг
+  }
 });
 
 carousel.addEventListener("touchend", () => {
+  if (!isSwiping) return;
+
   const diffX = startX - currentX;
 
   if (Math.abs(diffX) > threshold) {
@@ -77,6 +86,7 @@ carousel.addEventListener("touchend", () => {
   // Сбрасываем значения для следующего свайпа
   startX = 0;
   currentX = 0;
+  isSwiping = false;
 });
 
 // Функция для перемещения карусели
@@ -89,7 +99,7 @@ function updateCarousel() {
     console.log("DESKTOP");
     offset = (-currentIndex * 180) / totalItems;
   }
-  // const offset = (-currentIndex * 180) / totalItems;
+
   carousel.style.transform = `translateX(${offset}%)`;
 
   dots.forEach((dot) => dot.classList.remove("active"));
