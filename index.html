@@ -130,7 +130,7 @@
       </div>
     </section> 
    
-    <section id="carousel" class="mobile-carousel">
+    <!-- <section id="carousel" class="mobile-carousel">
       <div class="carousel-container">
         <div class="carousel">
           <div class="carousel-item-mobile">
@@ -168,7 +168,7 @@
         <span class="dot" data-index="3"></span>
         <span class="dot" data-index="4"></span>
       </div>
-    </section>
+    </section> -->
     
 
     <section id="real-about">
@@ -321,7 +321,7 @@
         const carousel = document.querySelector(".carousel");
         const dots = document.querySelectorAll(".dot");
         let currentIndex = 0;
-        const totalItems = document.querySelectorAll(".carousel-item-mobile").length;
+        const totalItems = document.querySelectorAll(".carousel-item").length;
     
         const updateCarousel = () => {
           carousel.style.transform = `translateX(-${currentIndex * 120}%)`; // Учитываем ширину элемента
