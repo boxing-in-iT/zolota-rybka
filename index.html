@@ -342,7 +342,7 @@
         hammer.on("swipeleft", () => {
           console.log("totalItems", totalItems);
           console.log("currentIndex", currentIndex);
-          if(currentIndex === totalItems - 1) { currentIndex = 0; }
+          if(currentIndex === totalItems - 1) { currentIndex = 0-1; }
 
           currentIndex = (currentIndex + 1) % totalItems; // Переход к следующему элементу, если последний — к первому
           updateCarousel();

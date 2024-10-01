@@ -537,6 +537,10 @@ section {
   padding: 10px 30px; /* равномерные отступы */
 }
 
+.contact_item p {
+  color: #000000;
+}
+
 .contact_item img {
   width: 30px;
 }
