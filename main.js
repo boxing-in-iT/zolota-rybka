@@ -48,39 +48,26 @@ navLinks.forEach((link) => {
 });
 let startX = 0;
 let endX = 0;
-let isSwiping = false; // Флаг для отслеживания активного свайпа
+let isSwiping = false;
 
 // Функция для отслеживания начала свайпа
 carousel.addEventListener("touchstart", (e) => {
-  if (!isSwiping) {
-    alert("Свайп не активен");
-    // return; // Если свайп неактивен, ничего не делаем
-  }
   startX = e.touches[0].clientX;
-  isSwiping = true; // Начинаем свайп
-  alert(`TouhStart startX: ${startX}`);
+  isSwiping = true; // Начинаем отслеживание свайпа
 });
 
 // Функция для отслеживания движения пальца
 carousel.addEventListener("touchmove", (e) => {
-  if (!isSwiping) {
-    alert("Свайп не активен");
-  } // Если свайп неактивен, ничего не делаем
+  if (!isSwiping) return; // Если свайп не начат, выходим
   endX = e.touches[0].clientX;
-  alert(`TouhMove startX: ${startX}, endX: ${endX}`);
 });
 
 // Функция для завершения свайпа
 carousel.addEventListener("touchend", () => {
-  if (!isSwiping) {
-    alert("Свайп не активен");
-    return; // Если свайп неактивен, ничего не делаем
-  }
+  if (!isSwiping) return; // Если свайп не начат, выходим
 
   const threshold = 50; // Минимальная длина свайпа для переключения слайда
   const swipeLength = startX - endX;
-
-  alert(`swipeLength: ${swipeLength}`);
 
   // Проверяем направление свайпа
   if (swipeLength > threshold) {
@@ -102,10 +89,8 @@ carousel.addEventListener("touchend", () => {
 function updateCarousel() {
   let offset;
   if (isMobile) {
-    console.log("MOBILE");
     offset = -currentIndex * 120;
   } else {
-    console.log("DESKTOP");
     offset = (-currentIndex * 180) / totalItems;
   }
 
