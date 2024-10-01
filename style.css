@@ -423,7 +423,7 @@ section {
   padding: 0;
   position: absolute;
   right: 70px;
-  top: 150px;
+  top: 75px;
 }
 
 .real-about_line_2 {
@@ -507,6 +507,7 @@ section {
   width: 75%;
   min-height: 80vh;
   margin: 0 auto;
+  margin-top: 50px;
 
   display: flex;
   justify-content: center;
@@ -810,7 +811,7 @@ footer {
 
   .real-about_text_absolute {
     font-size: calc(2 * var(--index));
-    top: 120px;
+    top: 150px;
     right: 0;
   }
 
@@ -855,7 +856,7 @@ footer {
   }
 
   #contact {
-    min-height: 50vh;
+    min-height: 100vh;
   }
 
   .contact-container {
