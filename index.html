@@ -74,7 +74,7 @@
         </div>
       </div>
     </section>
-    <section id="carousel">
+     <section id="carousel">
       <div class="carousel-container">
         <img src="./assets/images/arrow.svg" class="prev-btn" />
 
@@ -128,7 +128,48 @@
         <span class="dot" data-index="3"></span>
         <span class="dot" data-index="4"></span>
       </div>
+    </section> 
+   
+    <section id="carousel" class="mobile-carousel">
+      <div class="carousel-container">
+        <div class="carousel">
+          <div class="carousel-item-mobile">
+            <p class="carousel-item_title">Весільні церемоніі</p>
+            <img src="./assets/images/gallery/wedding/wedding_1.JPG" alt="Wedding Ceremony" />
+            <p class="carousel-item_text">Ми виконаємо будь-яке ваше бажання</p>
+          </div>
+          <div class="carousel-item-mobile">
+            <p class="carousel-item_title">Фотозони</p>
+            <img src="./assets/images/gallery/photozone/photozone_1.JPG" alt="Photozone" />
+            <p class="carousel-item_text">З турботою про вас та ваших гостей</p>
+          </div>
+          <div class="carousel-item-mobile">
+            <p class="carousel-item_title">Дитяче свято</p>
+            <img src="./assets/images/gallery/kids/kids_1.jpg" alt="Kids Party" />
+            <p class="carousel-item_text">Деталі важливі для нас</p>
+          </div>
+          <div class="carousel-item-mobile">
+            <p class="carousel-item_title">Новорічний декор</p>
+            <img src="./assets/images/gallery/ny/ny_1.jpeg" alt="New Year Party" />
+            <p class="carousel-item_text">Деталі важливі для нас</p>
+          </div>
+          <div class="carousel-item-mobile">
+            <p class="carousel-item_title">Серверування столів</p>
+            <img src="./assets/images/gallery/serve/serve_1.JPG" alt="Serve" />
+            <p class="carousel-item_text">Деталі важливі для нас</p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="carousel-dots">
+        <span class="dot" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+        <span class="dot" data-index="3"></span>
+        <span class="dot" data-index="4"></span>
+      </div>
     </section>
+    
 
     <section id="real-about">
       <div class="real-about-container">
@@ -274,5 +315,50 @@
       });
     </script>
     <script src="./main.js"></script>
+    <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const carousel = document.querySelector(".carousel");
+        const dots = document.querySelectorAll(".dot");
+        let currentIndex = 0;
+        const totalItems = document.querySelectorAll(".carousel-item-mobile").length;
+    
+        const updateCarousel = () => {
+          carousel.style.transform = `translateX(-${currentIndex * 120}%)`; // Учитываем ширину элемента
+          dots.forEach((dot, index) => {
+            dot.classList.toggle("active", index === currentIndex);
+          });
+        };
+    
+        dots.forEach((dot) => {
+          dot.addEventListener("click", () => {
+            currentIndex = parseInt(dot.dataset.index);
+            updateCarousel();
+          });
+        });
+        
+        // Инициализация свайпа
+        const hammer = new Hammer(carousel);
+        hammer.on("swipeleft", () => {
+          console.log("totalItems", totalItems);
+          console.log("currentIndex", currentIndex);
+          if(currentIndex === totalItems - 1) { currentIndex = 0; }
+
+          currentIndex = (currentIndex + 1) % totalItems; // Переход к следующему элементу, если последний — к первому
+          updateCarousel();
+        });
+    
+        hammer.on("swiperight", () => {
+          if(currentIndex === 0) { currentIndex = totalItems ; }
+          currentIndex = (currentIndex - 1 + totalItems) % totalItems; // Переход к предыдущему элементу
+          updateCarousel();
+        });
+    
+        updateCarousel();
+      });
+    </script>
+    
+
+
   </body>
 </html>

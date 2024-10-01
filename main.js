@@ -48,13 +48,6 @@ navLinks.forEach((link) => {
 });
 
 // Функция для перемещения карусели
-// const carousel = document.querySelector('.carousel');
-// const prevBtn = document.querySelector('.prev-btn');
-// const nextBtn = document.querySelector('.next-btn');
-// const dots = document.querySelectorAll('.dot');
-
-let startX, endX;
-
 function updateCarousel() {
   let offset;
   if (isMobile) {
@@ -64,29 +57,24 @@ function updateCarousel() {
     console.log("DESKTOP");
     offset = (-currentIndex * 180) / totalItems;
   }
+  // const offset = (-currentIndex * 180) / totalItems;
   carousel.style.transform = `translateX(${offset}%)`;
 
   dots.forEach((dot) => dot.classList.remove("active"));
   dots[currentIndex].classList.add("active");
 }
 
-// Функция для переключения влево
-function goToPrevious() {
+// Клик по кнопке "Назад"
+prevBtn.addEventListener("click", () => {
   currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1;
   updateCarousel();
-}
-
-// Функция для переключения вправо
-function goToNext() {
-  currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1;
-  updateCarousel();
-}
-
-// Клик по кнопке "Назад"
-prevBtn.addEventListener("click", goToPrevious);
+});
 
 // Клик по кнопке "Вперед"
-nextBtn.addEventListener("click", goToNext);
+nextBtn.addEventListener("click", () => {
+  currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1;
+  updateCarousel();
+});
 
 // Клик по точкам
 dots.forEach((dot) => {
@@ -95,27 +83,6 @@ dots.forEach((dot) => {
     updateCarousel();
   });
 });
-
-// Обработчик касания для свайпа
-carousel.addEventListener("touchstart", (event) => {
-  startX = event.touches[0].clientX; // Запоминаем начальную позицию
-});
-
-carousel.addEventListener("touchend", (event) => {
-  endX = event.changedTouches[0].clientX; // Запоминаем конечную позицию
-  handleSwipe();
-});
-
-function handleSwipe() {
-  const swipeThreshold = 50; // Порог для определения свайпа
-  if (startX > endX + swipeThreshold) {
-    // Свайп влево
-    goToNext();
-  } else if (startX < endX - swipeThreshold) {
-    // Свайп вправо
-    goToPrevious();
-  }
-}
 
 // Инициализация карусели
 updateCarousel();

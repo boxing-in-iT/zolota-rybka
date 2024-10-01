@@ -863,3 +863,94 @@ footer {
     min-height: 40vh;
   }
 }
+
+/* Карусель только для мобильных экранов */
+@media (max-width: 768px) {
+  .mobile-carousel {
+    display: block;
+  }
+
+  .carousel-container {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .carousel {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .carousel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .carousel-dots {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: gray;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
+  .dot.active {
+    background-color: black;
+  }
+}
+
+/* Скрываем карусель на больших экранах */
+/* Карусель только для мобильных экранов */
+@media (max-width: 768px) {
+  .mobile-carousel {
+    display: block;
+  }
+
+  .carousel-container {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .carousel {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .carousel-item-mobile {
+    min-width: 80%; /* Уменьшаем ширину элемента */
+    margin: 0 10px; /* Добавляем отступы для перекрытия */
+    box-sizing: border-box;
+  }
+
+  .carousel-dots {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: gray;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
+  .dot.active {
+    background-color: black;
+  }
+}
+
+/* Скрываем карусель на больших экранах */
+@media (min-width: 769px) {
+  .mobile-carousel {
+    display: none;
+  }
+}
