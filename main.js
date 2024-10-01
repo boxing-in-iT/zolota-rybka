@@ -47,76 +47,75 @@ navLinks.forEach((link) => {
   link.addEventListener("click", scrollToSection);
 });
 
-let startX = 0;
-let endX = 0;
-let isSwiping = false;
+// Функция для перемещения карусели
+// const carousel = document.querySelector('.carousel');
+// const prevBtn = document.querySelector('.prev-btn');
+// const nextBtn = document.querySelector('.next-btn');
+// const dots = document.querySelectorAll('.dot');
 
-// Total items in the carousel
-// const totalItems = document.querySelectorAll(".carousel-item").length;
+// let currentIndex = 0;
+// const totalItems = dots.length;
+let startX, endX;
 
-// Track the start of a swipe
-carousel.addEventListener("touchstart", (e) => {
-  startX = e.touches[0].clientX;
-  isSwiping = true;
-  alert("Swipe started at: " + startX);
-});
-
-// Track finger movement
-carousel.addEventListener("touchmove", (e) => {
-  if (!isSwiping) return;
-  endX = e.touches[0].clientX;
-  alert("Swiping: current position " + endX);
-});
-
-// Handle swipe end
-carousel.addEventListener("touchend", () => {
-  if (!isSwiping) return;
-
-  const threshold = 50; // Minimum swipe length to trigger slide change
-  const swipeLength = startX - endX;
-
-  alert(
-    "Swipe ended. StartX: " +
-      startX +
-      " EndX: " +
-      endX +
-      " Swipe Length: " +
-      swipeLength
-  );
-
-  // Swipe left - go to next slide
-  if (swipeLength > threshold) {
-    currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1;
-    alert("Swiped left to slide: " + currentIndex);
-  }
-  // Swipe right - go to previous slide
-  else if (swipeLength < -threshold) {
-    currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1;
-    alert("Swiped right to slide: " + currentIndex);
-  }
-
-  updateCarousel();
-
-  // Reset for the next swipe
-  startX = 0;
-  endX = 0;
-  isSwiping = false;
-});
-
+// Функция обновления карусели
 function updateCarousel() {
-  const offset = -currentIndex * 100; // Each item takes 100% width on mobile
-
-  // Apply the transformation
+  let offset;
+  if (isMobile) {
+    console.log("MOBILE");
+    offset = -currentIndex * 120;
+  } else {
+    console.log("DESKTOP");
+    offset = (-currentIndex * 180) / totalItems;
+  }
   carousel.style.transform = `translateX(${offset}%)`;
-  alert("Carousel moved to offset: " + offset + "%");
 
-  // Update active dot indicators
   dots.forEach((dot) => dot.classList.remove("active"));
   dots[currentIndex].classList.add("active");
-  alert("Updated active dot to: " + currentIndex);
 }
 
-// Initialize the carousel with the first slide
+// Клик по кнопке "Назад"
+prevBtn.addEventListener("click", () => {
+  currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1;
+  updateCarousel();
+});
+
+// Клик по кнопке "Вперед"
+nextBtn.addEventListener("click", () => {
+  currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1;
+  updateCarousel();
+});
+
+// Клик по точкам
+dots.forEach((dot) => {
+  dot.addEventListener("click", (e) => {
+    currentIndex = parseInt(e.target.dataset.index);
+    updateCarousel();
+  });
+});
+
+// Обработчик касания для свайпа
+carousel.addEventListener("touchstart", (event) => {
+  startX = event.touches[0].clientX; // Запоминаем начальную позицию
+});
+
+carousel.addEventListener("touchend", (event) => {
+  endX = event.changedTouches[0].clientX; // Запоминаем конечную позицию
+  handleSwipe();
+});
+
+function handleSwipe() {
+  if (startX > endX + 50) {
+    // Свайп влево
+    currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1;
+    updateCarousel();
+  } else if (startX < endX - 50) {
+    // Свайп вправо
+    currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1;
+    updateCarousel();
+  }
+}
+
+// Инициализация карусели
 updateCarousel();
 
 // Модальное окно галереи
