@@ -46,34 +46,44 @@ function scrollToSection(event) {
 navLinks.forEach((link) => {
   link.addEventListener("click", scrollToSection);
 });
-
 let startX = 0;
 let endX = 0;
+let isSwiping = false; // Флаг для отслеживания активного свайпа
 
 // Функция для отслеживания начала свайпа
 carousel.addEventListener("touchstart", (e) => {
   startX = e.touches[0].clientX;
+  isSwiping = true; // Начинаем свайп
 });
 
 // Функция для отслеживания движения пальца
 carousel.addEventListener("touchmove", (e) => {
+  if (!isSwiping) return; // Если свайп неактивен, ничего не делаем
   endX = e.touches[0].clientX;
 });
 
 // Функция для завершения свайпа
 carousel.addEventListener("touchend", () => {
-  // Если свайп был достаточно длинным, чтобы считаться
-  const threshold = 50; // Минимальная длина свайпа для переключения слайда
+  if (!isSwiping) return; // Если свайп неактивен, ничего не делаем
 
-  if (startX - endX > threshold) {
+  const threshold = 50; // Минимальная длина свайпа для переключения слайда
+  const swipeLength = startX - endX;
+
+  // Проверяем направление свайпа
+  if (swipeLength > threshold) {
     // Свайп влево - переключаем на следующий слайд
     currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1;
-  } else if (endX - startX > threshold) {
+  } else if (swipeLength < -threshold) {
     // Свайп вправо - переключаем на предыдущий слайд
     currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1;
   }
 
   updateCarousel();
+
+  // Сбрасываем значения для следующего свайпа
+  startX = 0;
+  endX = 0;
+  isSwiping = false;
 });
 
 function updateCarousel() {
