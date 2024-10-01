@@ -47,7 +47,7 @@ navLinks.forEach((link) => {
   link.addEventListener("click", scrollToSection);
 });
 
-const threshold = 50; // Минимальная длина свайпа для срабатывания
+const threshold = 5; // Минимальная длина свайпа для срабатывания
 let startX = 0;
 let currentX = 0;
 
@@ -62,6 +62,7 @@ carousel.addEventListener("touchmove", (e) => {
 
 carousel.addEventListener("touchend", () => {
   const diffX = startX - currentX;
+  console.log(diffX);
 
   if (Math.abs(diffX) > threshold) {
     if (diffX > 0) {
