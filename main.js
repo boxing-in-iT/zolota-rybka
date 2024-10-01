@@ -64,12 +64,15 @@ carousel.addEventListener("touchmove", (e) => {
 
 // Функция для завершения свайпа
 carousel.addEventListener("touchend", () => {
-  if (!isSwiping) return; // Если свайп неактивен, ничего не делаем
+  if (!isSwiping) {
+    alert("Свайп не активен");
+    return; // Если свайп неактивен, ничего не делаем
+  }
 
   const threshold = 50; // Минимальная длина свайпа для переключения слайда
   const swipeLength = startX - endX;
 
-  alert(swipeLength);
+  alert(`swipeLength: ${swipeLength}`);
 
   // Проверяем направление свайпа
   if (swipeLength > threshold) {
