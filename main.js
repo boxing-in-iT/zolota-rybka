@@ -12,6 +12,11 @@ const closeBtn = document.querySelector(".close-btn");
 const navLinks = document.querySelectorAll("nav ul li");
 let isMobile = window.innerWidth <= 1024;
 
+document.addEventListener("DOMContentLoaded", () => {
+  mobileNav.style.display = "none";
+  // hamburger.style.display = 'block';
+});
+
 // Открытие мобильного меню
 hamburger.addEventListener("click", () => {
   mobileNav.style.display = "flex";
@@ -42,34 +47,33 @@ navLinks.forEach((link) => {
   link.addEventListener("click", scrollToSection);
 });
 
-let startX, currentX;
 const threshold = 50; // Минимальная длина свайпа для срабатывания
+let startX = 0;
+let currentX = 0;
 
-// Функция для начала свайпа
 carousel.addEventListener("touchstart", (e) => {
   startX = e.touches[0].clientX;
 });
 
-// Функция для отслеживания перемещения
 carousel.addEventListener("touchmove", (e) => {
   currentX = e.touches[0].clientX;
+  e.preventDefault(); // Предотвращает другие события
 });
 
-// Функция для завершения свайпа
 carousel.addEventListener("touchend", () => {
   const diffX = startX - currentX;
 
-  // Если свайп был достаточной длины
   if (Math.abs(diffX) > threshold) {
     if (diffX > 0) {
-      // Свайп влево
       currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1;
     } else {
-      // Свайп вправо
       currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1;
     }
     updateCarousel();
   }
+  // Сбрасываем значения для следующего свайпа
+  startX = 0;
+  currentX = 0;
 });
 
 // Функция для перемещения карусели

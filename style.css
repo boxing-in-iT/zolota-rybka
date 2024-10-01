@@ -422,8 +422,8 @@ section {
   margin: 0;
   padding: 0;
   position: absolute;
-  right: 50px;
-  top: 90px;
+  right: 70px;
+  top: 150px;
 }
 
 .real-about_line_2 {
@@ -797,7 +797,7 @@ footer {
   .real-about_img {
     width: calc(15 * var(--index));
     /* height: calc(60 * var(--index)); */
-    height: 800px;
+    height: 900px;
   }
 
   .real-about_text {
@@ -842,7 +842,7 @@ footer {
 
   .real-about_text_absolute_4 {
     font-size: calc(1.5 * var(--index));
-    top: 55px;
+    top: 85px;
   }
 
   .real-about_line_5 {
@@ -855,7 +855,7 @@ footer {
   }
 
   #contact {
-    min-height: 10vh;
+    min-height: 50vh;
   }
 
   .contact-container {
