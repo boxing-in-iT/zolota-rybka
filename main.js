@@ -88,7 +88,13 @@ carousel.addEventListener("touchend", () => {
 
 function updateCarousel() {
   let offset;
-  offset = (-currentIndex * 180) / totalItems;
+  if (isMobile) {
+    console.log("MOBILE");
+    offset = -currentIndex * 120;
+  } else {
+    console.log("DESKTOP");
+    offset = (-currentIndex * 180) / totalItems;
+  }
 
   // Применяем трансформацию
   carousel.style.transform = `translateX(${offset}%)`;
