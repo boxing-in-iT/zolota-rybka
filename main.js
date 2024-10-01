@@ -47,7 +47,7 @@ navLinks.forEach((link) => {
   link.addEventListener("click", scrollToSection);
 });
 
-const threshold = 5; // Минимальная длина свайпа для срабатывания
+const threshold = 0.1; // Минимальная длина свайпа для срабатывания
 let startX = 0;
 let currentX = 0;
 
