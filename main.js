@@ -50,37 +50,49 @@ let startX = 0;
 let endX = 0;
 let isSwiping = false;
 
-// Функция для отслеживания начала свайпа
+// Function to track the start of a swipe
 carousel.addEventListener("touchstart", (e) => {
   startX = e.touches[0].clientX;
-  isSwiping = true; // Начинаем отслеживание свайпа
+  isSwiping = true; // Start swipe tracking
+  console.log("Swipe started", startX);
 });
 
-// Функция для отслеживания движения пальца
+// Function to track finger movement
 carousel.addEventListener("touchmove", (e) => {
-  if (!isSwiping) return; // Если свайп не начат, выходим
+  if (!isSwiping) return; // Exit if swipe not started
   endX = e.touches[0].clientX;
 });
 
-// Функция для завершения свайпа
+// Function to handle swipe end
 carousel.addEventListener("touchend", () => {
-  if (!isSwiping) return; // Если свайп не начат, выходим
+  if (!isSwiping) return; // Exit if swipe not started
 
-  const threshold = 50; // Минимальная длина свайпа для переключения слайда
+  const threshold = 50; // Minimum swipe length to trigger slide change
   const swipeLength = startX - endX;
 
-  // Проверяем направление свайпа
+  console.log(
+    "Swipe ended. StartX:",
+    startX,
+    "EndX:",
+    endX,
+    "Swipe Length:",
+    swipeLength
+  );
+
+  // Check swipe direction
   if (swipeLength > threshold) {
-    // Свайп влево - переключаем на следующий слайд
+    // Swipe left - go to next slide
     currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1;
+    console.log("Swiped left to", currentIndex);
   } else if (swipeLength < -threshold) {
-    // Свайп вправо - переключаем на предыдущий слайд
+    // Swipe right - go to previous slide
     currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1;
+    console.log("Swiped right to", currentIndex);
   }
 
   updateCarousel();
 
-  // Сбрасываем значения для следующего свайпа
+  // Reset values for the next swipe
   startX = 0;
   endX = 0;
   isSwiping = false;
@@ -94,27 +106,27 @@ function updateCarousel() {
     offset = (-currentIndex * 180) / totalItems;
   }
 
-  // Применяем трансформацию
+  // Apply transformation
   carousel.style.transform = `translateX(${offset}%)`;
 
-  // Обновляем индикаторы активного слайда
+  // Update active dot indicators
   dots.forEach((dot) => dot.classList.remove("active"));
   dots[currentIndex].classList.add("active");
 }
 
-// Клик по кнопке "Назад"
+// Click "Back" button
 prevBtn.addEventListener("click", () => {
   currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1;
   updateCarousel();
 });
 
-// Клик по кнопке "Вперед"
+// Click "Next" button
 nextBtn.addEventListener("click", () => {
   currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1;
   updateCarousel();
 });
 
-// Клик по точкам
+// Click on dots
 dots.forEach((dot) => {
   dot.addEventListener("click", (e) => {
     currentIndex = parseInt(e.target.dataset.index);
@@ -122,7 +134,7 @@ dots.forEach((dot) => {
   });
 });
 
-// Инициализация карусели
+// Initialize carousel
 updateCarousel();
 
 // Модальное окно галереи
