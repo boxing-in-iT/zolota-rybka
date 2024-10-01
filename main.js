@@ -54,12 +54,14 @@ let isSwiping = false; // Флаг для отслеживания активн�
 carousel.addEventListener("touchstart", (e) => {
   startX = e.touches[0].clientX;
   isSwiping = true; // Начинаем свайп
+  alert(`TouhStart startX: ${startX}`);
 });
 
 // Функция для отслеживания движения пальца
 carousel.addEventListener("touchmove", (e) => {
   if (!isSwiping) return; // Если свайп неактивен, ничего не делаем
   endX = e.touches[0].clientX;
+  alert(`TouhMove startX: ${startX}, endX: ${endX}`);
 });
 
 // Функция для завершения свайпа
