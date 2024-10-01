@@ -54,7 +54,7 @@ let isSwiping = false;
 carousel.addEventListener("touchstart", (e) => {
   startX = e.touches[0].clientX;
   isSwiping = true; // Start swipe tracking
-  console.log("Swipe started", startX);
+  alert("Swipe started at: " + startX);
 });
 
 // Function to track finger movement
@@ -70,24 +70,24 @@ carousel.addEventListener("touchend", () => {
   const threshold = 50; // Minimum swipe length to trigger slide change
   const swipeLength = startX - endX;
 
-  console.log(
-    "Swipe ended. StartX:",
-    startX,
-    "EndX:",
-    endX,
-    "Swipe Length:",
-    swipeLength
+  alert(
+    "Swipe ended. StartX: " +
+      startX +
+      " EndX: " +
+      endX +
+      " Swipe Length: " +
+      swipeLength
   );
 
   // Check swipe direction
   if (swipeLength > threshold) {
     // Swipe left - go to next slide
     currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1;
-    console.log("Swiped left to", currentIndex);
+    alert("Swiped left to slide: " + currentIndex);
   } else if (swipeLength < -threshold) {
     // Swipe right - go to previous slide
     currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1;
-    console.log("Swiped right to", currentIndex);
+    alert("Swiped right to slide: " + currentIndex);
   }
 
   updateCarousel();
