@@ -63,6 +63,7 @@ carousel.addEventListener("touchmove", (e) => {
 carousel.addEventListener("touchend", () => {
   const diffX = startX - currentX;
   console.log(diffX);
+  alert(diffX);
 
   if (Math.abs(diffX) > threshold) {
     if (diffX > 0) {
