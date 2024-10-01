@@ -69,6 +69,8 @@ carousel.addEventListener("touchend", () => {
   const threshold = 50; // Минимальная длина свайпа для переключения слайда
   const swipeLength = startX - endX;
 
+  alert(swipeLength);
+
   // Проверяем направление свайпа
   if (swipeLength > threshold) {
     // Свайп влево - переключаем на следующий слайд
