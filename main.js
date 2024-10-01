@@ -52,22 +52,21 @@ let startX = 0;
 let currentX = 0;
 let isSwiping = false;
 
-carousel.addEventListener("touchstart", (e) => {
+function handleTouchStart(e) {
   startX = e.touches[0].clientX;
   isSwiping = true;
-});
+}
 
-carousel.addEventListener("touchmove", (e) => {
+function handleTouchMove(e) {
   if (!isSwiping) return;
 
   currentX = e.touches[0].clientX;
-  // Сбрасываем дефолтное поведение только при значительном смещении
   if (Math.abs(startX - currentX) > threshold) {
-    e.preventDefault(); // Предотвращает другие события, такие как скроллинг
+    e.preventDefault(); // Предотвращает скроллинг при активном свайпе
   }
-});
+}
 
-carousel.addEventListener("touchend", () => {
+function handleTouchEnd() {
   if (!isSwiping) return;
 
   const diffX = startX - currentX;
@@ -83,11 +82,19 @@ carousel.addEventListener("touchend", () => {
     updateCarousel();
   }
 
-  // Сбрасываем значения для следующего свайпа
   startX = 0;
   currentX = 0;
   isSwiping = false;
-});
+}
+
+function addSwipeListeners() {
+  carousel.addEventListener("touchstart", handleTouchStart);
+  carousel.addEventListener("touchmove", handleTouchMove);
+  carousel.addEventListener("touchend", handleTouchEnd);
+}
+
+// Инициализация свайпов
+addSwipeListeners();
 
 // Функция для перемещения карусели
 function updateCarousel() {
@@ -100,8 +107,10 @@ function updateCarousel() {
     offset = (-currentIndex * 180) / totalItems;
   }
 
+  // Применяем трансформацию
   carousel.style.transform = `translateX(${offset}%)`;
 
+  // Обновляем индикаторы активного слайда
   dots.forEach((dot) => dot.classList.remove("active"));
   dots[currentIndex].classList.add("active");
 }
