@@ -47,65 +47,37 @@ navLinks.forEach((link) => {
   link.addEventListener("click", scrollToSection);
 });
 
-const threshold = 50; // Минимальная длина свайпа для срабатывания
 let startX = 0;
-let currentX = 0;
-let isSwiping = false;
+let endX = 0;
 
-function handleTouchStart(e) {
+// Функция для отслеживания начала свайпа
+carousel.addEventListener("touchstart", (e) => {
   startX = e.touches[0].clientX;
-  isSwiping = true;
-}
+});
 
-function handleTouchMove(e) {
-  if (!isSwiping) return;
+// Функция для отслеживания движения пальца
+carousel.addEventListener("touchmove", (e) => {
+  endX = e.touches[0].clientX;
+});
 
-  currentX = e.touches[0].clientX;
-  if (Math.abs(startX - currentX) > threshold) {
-    e.preventDefault(); // Предотвращает скроллинг при активном свайпе
-  }
-}
+// Функция для завершения свайпа
+carousel.addEventListener("touchend", () => {
+  // Если свайп был достаточно длинным, чтобы считаться
+  const threshold = 50; // Минимальная длина свайпа для переключения слайда
 
-function handleTouchEnd() {
-  if (!isSwiping) return;
-
-  const diffX = startX - currentX;
-
-  if (Math.abs(diffX) > threshold) {
-    if (diffX > 0) {
-      // Свайп влево
-      currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1;
-    } else {
-      // Свайп вправо
-      currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1;
-    }
-    updateCarousel();
+  if (startX - endX > threshold) {
+    // Свайп влево - переключаем на следующий слайд
+    currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1;
+  } else if (endX - startX > threshold) {
+    // Свайп вправо - переключаем на предыдущий слайд
+    currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1;
   }
 
-  startX = 0;
-  currentX = 0;
-  isSwiping = false;
-}
+  updateCarousel();
+});
 
-function addSwipeListeners() {
-  carousel.addEventListener("touchstart", handleTouchStart);
-  carousel.addEventListener("touchmove", handleTouchMove);
-  carousel.addEventListener("touchend", handleTouchEnd);
-}
-
-// Инициализация свайпов
-addSwipeListeners();
-
-// Функция для перемещения карусели
 function updateCarousel() {
   let offset;
-  // if (isMobile) {
-  //   console.log("MOBILE");
-  //   offset = -currentIndex * 120;
-  // } else {
-  //   console.log("DESKTOP");
-  //   offset = (-currentIndex * 180) / totalItems;
-  // }
   offset = (-currentIndex * 180) / totalItems;
 
   // Применяем трансформацию
