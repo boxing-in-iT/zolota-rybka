@@ -51,22 +51,26 @@ let startX = 0;
 let endX = 0;
 let isSwiping = false;
 
-// Function to track the start of a swipe
+// Total items in the carousel
+// const totalItems = document.querySelectorAll(".carousel-item").length;
+
+// Track the start of a swipe
 carousel.addEventListener("touchstart", (e) => {
   startX = e.touches[0].clientX;
-  isSwiping = true; // Start swipe tracking
+  isSwiping = true;
   alert("Swipe started at: " + startX);
 });
 
-// Function to track finger movement
+// Track finger movement
 carousel.addEventListener("touchmove", (e) => {
-  if (!isSwiping) return; // Exit if swipe not started
+  if (!isSwiping) return;
   endX = e.touches[0].clientX;
+  alert("Swiping: current position " + endX);
 });
 
-// Function to handle swipe end
+// Handle swipe end
 carousel.addEventListener("touchend", () => {
-  if (!isSwiping) return; // Exit if swipe not started
+  if (!isSwiping) return;
 
   const threshold = 50; // Minimum swipe length to trigger slide change
   const swipeLength = startX - endX;
@@ -80,43 +84,29 @@ carousel.addEventListener("touchend", () => {
       swipeLength
   );
 
-  // Check swipe direction
+  // Swipe left - go to next slide
   if (swipeLength > threshold) {
-    // Swipe left - go to next slide
     currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1;
     alert("Swiped left to slide: " + currentIndex);
-  } else if (swipeLength < -threshold) {
-    // Swipe right - go to previous slide
+  }
+  // Swipe right - go to previous slide
+  else if (swipeLength < -threshold) {
     currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1;
     alert("Swiped right to slide: " + currentIndex);
   }
 
-  // Check and ensure currentIndex is within valid bounds
-  if (currentIndex < 0) {
-    currentIndex = 0;
-    alert("Adjusted currentIndex to: " + currentIndex);
-  } else if (currentIndex >= totalItems) {
-    currentIndex = totalItems - 1;
-    alert("Adjusted currentIndex to: " + currentIndex);
-  }
-
   updateCarousel();
 
-  // Reset values for the next swipe
+  // Reset for the next swipe
   startX = 0;
   endX = 0;
   isSwiping = false;
 });
 
 function updateCarousel() {
-  let offset;
-  if (isMobile) {
-    offset = -currentIndex * 120;
-  } else {
-    offset = (-currentIndex * 180) / totalItems;
-  }
+  const offset = -currentIndex * 100; // Each item takes 100% width on mobile
 
-  // Apply transformation
+  // Apply the transformation
   carousel.style.transform = `translateX(${offset}%)`;
   alert("Carousel moved to offset: " + offset + "%");
 
@@ -126,27 +116,7 @@ function updateCarousel() {
   alert("Updated active dot to: " + currentIndex);
 }
 
-// Click "Back" button
-prevBtn.addEventListener("click", () => {
-  currentIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1;
-  updateCarousel();
-});
-
-// Click "Next" button
-nextBtn.addEventListener("click", () => {
-  currentIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1;
-  updateCarousel();
-});
-
-// Click on dots
-dots.forEach((dot) => {
-  dot.addEventListener("click", (e) => {
-    currentIndex = parseInt(e.target.dataset.index);
-    updateCarousel();
-  });
-});
-
-// Initialize carousel
+// Initialize the carousel with the first slide
 updateCarousel();
 
 // Модальное окно галереи
