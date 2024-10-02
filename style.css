@@ -147,7 +147,8 @@ header {
   margin: 0;
   padding: 0;
   position: absolute;
-  bottom: 0;
+  /* bottom: 0; */
+  top: 100px;
 }
 
 .welcome_button_container {
@@ -753,7 +754,7 @@ footer {
   }
 
   .welcome_title_h2 {
-    top: 20px;
+    top: 50px;
   }
 
   .welcome_button_text_line {
