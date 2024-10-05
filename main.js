@@ -149,8 +149,18 @@ document.querySelectorAll(".carousel-item").forEach((item, index) => {
       //WEDDING
       case 0:
         images = [
-          "./assets/images/gallery/wedding/wedding_1.JPG",
-          "./assets/images/gallery/wedding/wedding_2.JPG",
+          "./assets/images/gallery/wedding/wedding_1-min.JPG",
+          "./assets/images/gallery/wedding/wedding_2-min.JPG",
+          "./assets/images/gallery/wedding/wedding_3-min.JPG",
+          "./assets/images/gallery/wedding/wedding_4-min.JPG",
+          "./assets/images/gallery/wedding/wedding_5-min.JPG",
+          "./assets/images/gallery/wedding/wedding_6-min.JPG",
+          "./assets/images/gallery/wedding/wedding_7-min.JPG",
+          "./assets/images/gallery/wedding/wedding_8-min.JPG",
+          "./assets/images/gallery/wedding/wedding_9-min.JPG",
+          "./assets/images/gallery/wedding/wedding_10-min.JPG",
+          "./assets/images/gallery/wedding/wedding_11-min.png",
+          "./assets/images/gallery/wedding/wedding_12-min.png",
         ];
         break;
       //PHOTOZONE
@@ -164,10 +174,11 @@ document.querySelectorAll(".carousel-item").forEach((item, index) => {
           "./assets/images/gallery/photozone/photozone_6-min.JPG",
           "./assets/images/gallery/photozone/photozone_7-min.JPG",
           "./assets/images/gallery/photozone/photozone_8-min.JPG",
-          "./assets/images/gallery/photozone/photozone_9-min.JPG",
+          "./assets/images/gallery/photozone/photozone_9-min.png",
           "./assets/images/gallery/photozone/photozone_10-min.JPG",
           "./assets/images/gallery/photozone/photozone_11-min.JPG",
           "./assets/images/gallery/photozone/photozone_12-min.JPG",
+          "./assets/images/gallery/photozone/photozone_13-min.JPG",
         ];
 
         break;
