@@ -156,63 +156,63 @@ document.querySelectorAll(".carousel-item").forEach((item, index) => {
       //PHOTOZONE
       case 1:
         images = [
-          "./assets/images/gallery/photozone/photozone_1.JPG",
-          "./assets/images/gallery/photozone/photozone_2.JPG",
-          "./assets/images/gallery/photozone/photozone_3.JPG",
-          "./assets/images/gallery/photozone/photozone_4.JPG",
-          "./assets/images/gallery/photozone/photozone_5.JPG",
-          "./assets/images/gallery/photozone/photozone_6.JPG",
-          "./assets/images/gallery/photozone/photozone_7.JPG",
-          "./assets/images/gallery/photozone/photozone_8.JPG",
-          "./assets/images/gallery/photozone/photozone_9.JPG",
-          "./assets/images/gallery/photozone/photozone_10.JPG",
-          "./assets/images/gallery/photozone/photozone_11.JPG",
-          "./assets/images/gallery/photozone/photozone_12.JPG",
+          "./assets/images/gallery/photozone/photozone_1-min.JPG",
+          "./assets/images/gallery/photozone/photozone_2-min.JPG",
+          "./assets/images/gallery/photozone/photozone_3-min.JPG",
+          "./assets/images/gallery/photozone/photozone_4-min.JPG",
+          "./assets/images/gallery/photozone/photozone_5-min.JPG",
+          "./assets/images/gallery/photozone/photozone_6-min.JPG",
+          "./assets/images/gallery/photozone/photozone_7-min.JPG",
+          "./assets/images/gallery/photozone/photozone_8-min.JPG",
+          "./assets/images/gallery/photozone/photozone_9-min.JPG",
+          "./assets/images/gallery/photozone/photozone_10-min.JPG",
+          "./assets/images/gallery/photozone/photozone_11-min.JPG",
+          "./assets/images/gallery/photozone/photozone_12-min.JPG",
         ];
 
         break;
       //KIDSPHOTOZONE
       case 2:
         images = [
-          "./assets/images/gallery/kids/kids_1.jpg",
-          "./assets/images/gallery/kids/kids_2.jpg",
-          "./assets/images/gallery/kids/kids_3.jpg",
-          "./assets/images/gallery/kids/kids_4.jpg",
-          "./assets/images/gallery/kids/kids_5.jpg",
-          "./assets/images/gallery/kids/kids_6.jpg",
-          "./assets/images/gallery/kids/kids_7.jpg",
-          "./assets/images/gallery/kids/kids_8.jpg",
-          "./assets/images/gallery/kids/kids_9.jpg",
-          "./assets/images/gallery/kids/kids_10.jpg",
-          "./assets/images/gallery/kids/kids_11.jpg",
+          "./assets/images/gallery/kids/kids_1-min.jpeg",
+          "./assets/images/gallery/kids/kids_2-min.jpg",
+          "./assets/images/gallery/kids/kids_3-min.jpg",
+          "./assets/images/gallery/kids/kids_4-min.jpg",
+          "./assets/images/gallery/kids/kids_5-min.jpg",
+          "./assets/images/gallery/kids/kids_6-min.jpg",
+          "./assets/images/gallery/kids/kids_7-min.jpg",
+          "./assets/images/gallery/kids/kids_8-min.jpg",
+          "./assets/images/gallery/kids/kids_9-min.jpg",
+          "./assets/images/gallery/kids/kids_10-min.jpg",
+          "./assets/images/gallery/kids/kids_11-min.jpg",
         ];
         break;
       //NEWYEAR
       case 3:
         images = [
-          "./assets/images/gallery/ny/ny_1.jpeg",
-          "./assets/images/gallery/ny/ny_2.jpg",
-          "./assets/images/gallery/ny/ny_3.jpg",
-          "./assets/images/gallery/ny/ny_4.jpg",
-          "./assets/images/gallery/ny/ny_5.jpg",
-          "./assets/images/gallery/ny/ny_6.jpg",
-          "./assets/images/gallery/ny/ny_7.jpg",
+          "./assets/images/gallery/ny/ny_1-min.jpeg",
+          "./assets/images/gallery/ny/ny_2-min.jpg",
+          "./assets/images/gallery/ny/ny_3-min.jpg",
+          "./assets/images/gallery/ny/ny_4-min.jpg",
+          "./assets/images/gallery/ny/ny_5-min.jpg",
+          "./assets/images/gallery/ny/ny_6-min.jpg",
+          "./assets/images/gallery/ny/ny_7-min.jpg",
         ];
         break;
       case 4:
         images = [
-          "./assets/images/gallery/serve/serve_1.JPG",
-          "./assets/images/gallery/serve/serve_2.JPG",
-          "./assets/images/gallery/serve/serve_3.JPG",
-          "./assets/images/gallery/serve/serve_4.JPG",
-          "./assets/images/gallery/serve/serve_5.JPG",
-          "./assets/images/gallery/serve/serve_6.JPG",
-          "./assets/images/gallery/serve/serve_7.JPG",
-          "./assets/images/gallery/serve/serve_8.JPG",
-          "./assets/images/gallery/serve/serve_9.JPG",
-          "./assets/images/gallery/serve/serve_10.JPG",
-          "./assets/images/gallery/serve/serve_11.JPG",
-          "./assets/images/gallery/serve/serve_12.JPG",
+          "./assets/images/gallery/serve/serve_1-min.webp",
+          "./assets/images/gallery/serve/serve_2-min.webp",
+          "./assets/images/gallery/serve/serve_3-min.webp",
+          "./assets/images/gallery/serve/serve_4-min.webp",
+          "./assets/images/gallery/serve/serve_5-min.webp",
+          "./assets/images/gallery/serve/serve_6-min.webp",
+          "./assets/images/gallery/serve/serve_7-min.webp",
+          "./assets/images/gallery/serve/serve_8-min.webp",
+          "./assets/images/gallery/serve/serve_9-min.webp",
+          "./assets/images/gallery/serve/serve_10-min.webp",
+          "./assets/images/gallery/serve/serve_11-min.webp",
+          "./assets/images/gallery/serve/serve_12-min.webp",
         ];
       // Добавь другие кейсы по необходимости
     }

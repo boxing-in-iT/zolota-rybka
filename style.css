@@ -587,7 +587,7 @@ footer {
 .gallery-image {
   display: none; /* Hidden by default */
   max-width: 100%;
-  max-height: 80vh;
+  max-height: 90vh;
   /* Rounded corners for images */
 }
 
@@ -638,8 +638,12 @@ footer {
 .close-text {
   color: white;
   text-align: center;
-  margin-top: 100px; /* Spacing above counter */
-  font-size: 18px; /* Slightly larger font size */
+  font-size: 32px; /* Slightly larger font size */
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: "Arial", sans-serif;
   cursor: pointer;
 }
 
@@ -885,6 +889,10 @@ footer {
   .carousel {
     display: flex;
     transition: transform 0.3s ease-in-out;
+  }
+
+  .close-text {
+    top: -100px;
   }
 
   .carousel-item {
