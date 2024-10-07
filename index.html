@@ -236,9 +236,9 @@
     <section id="contact">
       <div class="contact-container">
         <div class="contact_box">
-          <div class="contact_item">
+          <div class="contact_item" onclick="copyToClipboard()">
             <img src="./assets/images/contact/phone.svg" alt="Телефон"/>
-            <p style="list-style: none; text-decoration: none; ">+380508024242</p>
+            <p id="phone-number" style="list-style: none; text-decoration: none; ">+380508024242</p>
           </div>
           <a style="list-style: none; text-decoration: none;" href="https://www.instagram.com/zolotarubka.cv?igsh=ZDEwemk4NjQ2ZjQy" target="_blank">
             <div class="contact_item">
@@ -259,6 +259,8 @@
             <p>VIBER</p>
           </div>
         </div>
+
+        
       </div>
     </section>
 
@@ -390,7 +392,16 @@
       });
     </script>
     
-
+    <script>
+      function copyToClipboard() {
+        const phoneNumber = document.getElementById("phone-number").innerText;
+        navigator.clipboard.writeText(phoneNumber).then(() => {
+          alert("Номер телефону скопійовано: " + phoneNumber);
+        }).catch(err => {
+          console.error('Ошибка копирования: ', err);
+        });
+      }
+    </script>
 
   </body>
 </html>
