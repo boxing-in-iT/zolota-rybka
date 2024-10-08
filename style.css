@@ -564,7 +564,7 @@ footer {
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(40px);
+  backdrop-filter: blur(80px);
   transition: opacity 0.3s ease; /* Smooth transition for opacity */
 }
 
