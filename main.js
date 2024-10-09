@@ -144,7 +144,6 @@ function showImage(index) {
 document.querySelectorAll(".carousel-item").forEach((item, index) => {
   item.addEventListener("click", () => {
     let images = [];
-    debugger;
     switch (index) {
       //WEDDING
       case 0:

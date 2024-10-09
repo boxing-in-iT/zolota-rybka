@@ -403,5 +403,109 @@
       }
     </script>
 
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Animate welcome title
+    gsap.from(".welcome_title_h1", {
+      duration: 1,
+      y: -50,
+      opacity: 0,
+      ease: "power2.out"
+    });
+
+    // Animate welcome button
+    gsap.from(".welcome_button", {
+      duration: 1,
+      scale: 0,
+      opacity: 0,
+      delay: 0.5,
+      ease: "bounce.out"
+    });
+
+    // Animate the about section when it comes into view
+    const aboutBox = document.querySelectorAll(".about_box");
+
+    aboutBox.forEach(box => {
+      gsap.from(box, {
+        scrollTrigger: {
+          trigger: box, // элемент, который триггерит анимацию
+          start: "top 80%", // начало анимации, когда верх элемента достигает 80% высоты окна
+          toggleActions: "play none none reverse", // действия при прокрутке
+        },
+        duration: 1,
+        y: 50,
+        opacity: 0,
+        ease: "power2.out",
+      });
+    });
+
+    // Animate the absolute title when it comes into view
+    gsap.from(".about_absolute_title", {
+      scrollTrigger: {
+        trigger: ".about_absolute_title", // элемент, который триггерит анимацию
+        start: "top 80%", // начало анимации
+        end: "top 30%", // конец анимации
+        toggleActions: "play none none reverse", // действия при прокрутке
+      },
+      opacity: 0, // начальная прозрачность
+      y: 50, // смещение по Y
+      duration: 1, // продолжительность анимации
+      ease: "power1.out", // эффект
+    });
+  });
+</script> -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+      // Animate welcome title
+      gsap.from(".welcome_title_h1", {
+          duration: 1,
+          y: -50,
+          opacity: 0,
+          ease: "power2.out"
+      });
+
+      // Animate welcome button
+      gsap.from(".welcome_button", {
+          duration: 1,
+          scale: 0,
+          opacity: 0,
+          delay: 0.5,
+          ease: "bounce.out"
+      });
+
+      // Animate the about boxes when they come into view
+      const aboutBoxes = document.querySelectorAll(".about_box");
+
+      aboutBoxes.forEach(box => {
+          gsap.from(box, {
+              scrollTrigger: {
+                  trigger: box, // элемент, который триггерит анимацию
+                  start: "top 80%", // начало анимации
+                  toggleActions: "play none none reverse" // действия при прокрутке
+              },
+              duration: 1,
+              y: 50,
+              opacity: 0,
+              ease: "power2.out"
+          });
+      });
+
+      // Animate the absolute title when it comes into view
+      gsap.from(".about_absolute_title", {
+          scrollTrigger: {
+              trigger: ".about_absolute_title", // элемент, который триггерит анимацию
+              start: "top 80%", // начало анимации
+              toggleActions: "play none none reverse" // действия при прокрутке
+          },
+          duration: 1,
+          opacity: 0, // начальная прозрачность
+          y: 50, // смещение по Y
+          ease: "power1.out" // эффект
+      });
+  });
+</script>
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </html>
