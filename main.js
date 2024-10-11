@@ -172,12 +172,11 @@ document.querySelectorAll(".carousel-item").forEach((item, index) => {
           "./assets/images/gallery/photozone/photozone_5-min.JPG",
           "./assets/images/gallery/photozone/photozone_6-min.JPG",
           "./assets/images/gallery/photozone/photozone_7-min.JPG",
-          "./assets/images/gallery/photozone/photozone_8-min.JPG",
-          "./assets/images/gallery/photozone/photozone_9-min.png",
+          "./assets/images/gallery/photozone/photozone_8-min.png",
+          "./assets/images/gallery/photozone/photozone_9-min.jpg",
           "./assets/images/gallery/photozone/photozone_10-min.JPG",
           "./assets/images/gallery/photozone/photozone_11-min.JPG",
           "./assets/images/gallery/photozone/photozone_12-min.JPG",
-          "./assets/images/gallery/photozone/photozone_13-min.JPG",
         ];
 
         break;
@@ -218,11 +217,12 @@ document.querySelectorAll(".carousel-item").forEach((item, index) => {
           "./assets/images/gallery/serve/serve_5-min.webp",
           "./assets/images/gallery/serve/serve_6-min.webp",
           "./assets/images/gallery/serve/serve_7-min.webp",
-          "./assets/images/gallery/serve/serve_8-min.webp",
+          "./assets/images/gallery/serve/serve_8-min.JPG",
           "./assets/images/gallery/serve/serve_9-min.webp",
           "./assets/images/gallery/serve/serve_10-min.webp",
           "./assets/images/gallery/serve/serve_11-min.webp",
           "./assets/images/gallery/serve/serve_12-min.webp",
+          "./assets/images/gallery/serve/serve_13-min.webp",
         ];
       // Добавь другие кейсы по необходимости
     }
