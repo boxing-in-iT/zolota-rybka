@@ -67,7 +67,7 @@
         </div>
       </section>
     </div>
-    <section id="about">
+    <section id="about" class="target">
       <div class="about-container">
         <div class="about_box">
           <p class="about_title">
@@ -77,14 +77,15 @@
           <p class="about_absolute_title">love story</p>
         </div>
         <div class="about_box_2">
-          <p class="about_text">
+          <!-- <p class="about_text">
             "Наші весільні декорації — це не просто прикраси, а ретельно
             продумані елементи, що передають вашу індивідуальність і характер
             вашого свята. Від вибору кольорів до найдрібніших деталей, ми
             створюємо атмосферу, яка розповідає вашу історію кохання та
             перетворює весілля на незабутню подію, яка залишить яскраві спогади
             у кожного гостя."
-          </p>
+          </p> -->
+          <p class="about_text typing"></p>
         </div>
       </div>
     </section>
@@ -254,10 +255,13 @@
             </div>
           </a>
           
-          <div class="contact_item">
-            <img src="./assets/images/contact/viber-svgrepo-com 1.png" alt="Вайбер"/>
-            <p>VIBER</p>
-          </div>
+          <a style="list-style: none; text-decoration: none;" href="https://tinyurl.com/4fvyefs6" target="_blank">
+            <div class="contact_item">
+              <img src="./assets/images/contact/viber-svgrepo-com 1.png" alt="Вайбер"/>
+              <p>VIBER</p>
+            </div>
+          </a>
+          
         </div>
 
         
@@ -454,56 +458,123 @@
     });
   });
 </script> -->
+
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-      // Animate welcome title
-      gsap.from(".welcome_title_h1", {
-          duration: 1,
-          y: -50,
-          opacity: 0,
-          ease: "power2.out"
-      });
+    // Animate welcome title on scroll
+    gsap.from(".welcome_title_h1", {
+        scrollTrigger: {
+            trigger: ".welcome_title_h1",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+        },
+        duration: 1,
+        y: -50,
+        opacity: 0,
+        ease: "power2.out"
+    });
 
-      // Animate welcome button
-      gsap.from(".welcome_button", {
-          duration: 1,
-          scale: 0,
-          opacity: 0,
-          delay: 0.5,
-          ease: "bounce.out"
-      });
+    // Animate welcome button on scroll
+    gsap.from(".welcome_button", {
+        scrollTrigger: {
+            trigger: ".welcome_button",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+        },
+        duration: 1,
+        scale: 0,
+        opacity: 0,
+        ease: "bounce.out"
+    });
 
-      // Animate the about boxes when they come into view
-      const aboutBoxes = document.querySelectorAll(".about_box");
+    // Animate the about boxes when they come into view
+    
 
-      aboutBoxes.forEach(box => {
+  
+});
+
+</script>
+
+<script>
+  
+</script>
+
+<script>
+  // Функция для сохранения сообщения в локальном хранилище
+  function saveMessage() {
+    console.log('Сообщение сохранено в локальном хранилище.');
+  }
+
+  // Настройка IntersectionObserver
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Задержка перед вызовом функции saveMessage
+        setTimeout(() => {
+          saveMessage();
+        }, 500); // 500 миллисекунд (0.5 секунды)
+
+        observer.unobserve(entry.target); // Остановить наблюдение после сохранения
+
+        // Анимация заголовка, когда он появляется в поле зрения
+        const aboutBoxes = document.querySelectorAll(".about_box");
+        aboutBoxes.forEach(box => {
           gsap.from(box, {
-              scrollTrigger: {
-                  trigger: box, // элемент, который триггерит анимацию
-                  start: "top 80%", // начало анимации
-                  toggleActions: "play none none reverse" // действия при прокрутке
-              },
-              duration: 1,
-              y: 50,
-              opacity: 0,
-              ease: "power2.out"
+            scrollTrigger: {
+              trigger: box,
+              start: "bottom 80%",
+              toggleActions: "play none none reverse"
+            },
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            ease: "power2.out"
           });
-      });
+        });
 
-      // Animate the absolute title when it comes into view
-      gsap.from(".about_absolute_title", {
+        gsap.from(".about_absolute_title", {
           scrollTrigger: {
-              trigger: ".about_absolute_title", // элемент, который триггерит анимацию
-              start: "top 80%", // начало анимации
-              toggleActions: "play none none reverse" // действия при прокрутке
+            trigger: ".about_absolute_title",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
           },
           duration: 1,
-          opacity: 0, // начальная прозрачность
-          y: 50, // смещение по Y
-          ease: "power1.out" // эффект
-      });
+          opacity: 0,
+          x: 50,
+          ease: "power4.out"
+        });
+      }
+    });
   });
+
+  // Получаем элемент по классу
+  const targetElement = document.querySelector('.about_box');
+  if (targetElement) {
+    observer.observe(targetElement); // Начать наблюдение за элементом
+  }
 </script>
+
+  <script>
+    const text = "Дорогі молодята, ми зробимо ваше свято незабутнім!"; // Текст, який потрібно анімувати
+    const typingTextElement = document.getElementById("typing-text");
+    let index = 0;
+
+    function typeText() {
+      debugger;
+        if (index < text.length) {
+            typingTextElement.innerHTML += text.charAt(index);
+            index++;
+            setTimeout(typeText, 100); // Затримка між символами
+        } else {
+            typingTextElement.innerHTML = text; // Закінчити анімацію
+            typingTextElement.classList.remove("typing"); // Убрать курсор
+        }
+    }
+
+    // Почати анімацію
+    typeText();
+  </script>
+
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
