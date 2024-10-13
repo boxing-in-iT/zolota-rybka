@@ -832,6 +832,7 @@ footer {
     width: calc(15 * var(--index));
     /* height: calc(60 * var(--index)); */
     height: 900px;
+    content: url("./assets/images/mobile-about.png");
   }
 
   .real-about_text {
